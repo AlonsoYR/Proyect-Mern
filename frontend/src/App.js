@@ -14,12 +14,15 @@ function App() {
     <Router>
       
       <Navigation/>
+      <div className="container p-4">
       <Routes>
         <Route path='/' exact Component={NoteList}/>
         <Route path="/edit/:id" Component={CreateNote}/>
         <Route path="/create" Component={CreateNote}/>
         <Route path="/user" Component={CreateUser}/>
       </Routes>
+      </div>
+      
     </Router>
   );
 }

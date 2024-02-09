@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {format} from "timeago.js" 
+import {format} from 'timeago.js' 
+import {Link} from 'react-router-dom';
 
 export default class NoteList extends Component {
 
@@ -10,6 +11,7 @@ export default class NoteList extends Component {
   }
   
   componentDidMount(){
+    
     this.getNotes();
   } 
 
@@ -30,8 +32,12 @@ export default class NoteList extends Component {
               this.state.notes.map(notes => (
                 <div className="col-md-4 p-2" key={notes._id}>
                   <div className="card">
-                    <div className="card-header">
+                    <div className="card-header d-flex justify-content-between">
                       <h5>{notes.title}</h5>
+                      
+                        <Link className='btn btn-secondary' to={"/edit/" + notes._id}>
+                        Edit
+                        </Link>
                     </div>
                     <div className="card-body">
                       <p>{notes.content}</p>
@@ -39,7 +45,9 @@ export default class NoteList extends Component {
                       <p>{format(notes.date)}</p>
                     </div>
                     <div className="card-footer">
-                      <button className='btn btn-danger ms-auto' onClick={() => this.deleteNote(notes._id)}>Delete</button>
+                      <button className='btn btn-danger ms-auto' onClick={() => this.deleteNote(notes._id)}>
+                        Delete
+                        </button>
                     </div>
                   </div>
                 </div>
